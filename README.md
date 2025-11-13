@@ -1,4 +1,4 @@
-# Flight Search Service ✈️
+# Flight Search Service ✈️ - – Backend Microservice for Flight Booking Platform
 
 The **Flight Search Service** is a dedicated microservice for managing all flight search operations in a flight booking system. Built with **Node.js, Express, MySQL, Sequelize ORM**, and **JWT** for authentication, it handles high-volume search requests efficiently while separating booking logic into a different microservice to ensure scalability and reliability.
 
@@ -35,6 +35,69 @@ This separation ensures that **heavy search traffic does not impact booking oper
 * **Authentication**: JWT
 * **Architecture**: Microservices with API Gateway & Load Balancer
 * **Other**: RESTful APIs, Async operations for high performance
+
+---
+
+## 🎯 Functional Requirements
+
+1. **Flight Management**:
+
+   * Create, update, retrieve, and delete flights.
+   * Manage airlines and cities.
+
+2. **Search Flights**:
+
+   * Search flights by source, destination, date, airline, and other filters.
+   * Support real-time results for multiple users concurrently.
+
+3. **User Authentication**:
+
+   * Register and login users securely using JWT.
+   * Restrict certain endpoints to authenticated users only.
+
+4. **Inter-Service Communication**:
+
+   * Provide APIs for Flight Booking Service to verify seat availability.
+   * Ensure coordination during booking operations.
+
+5. **Concurrency Handling**:
+
+   * Prevent race conditions during simultaneous searches or seat checks.
+
+---
+
+## 🏎️ Non-Functional Requirements
+
+1. **Scalability**:
+
+   * Should handle thousands of concurrent search requests without affecting performance.
+
+2. **Reliability & Availability**:
+
+   * Flight search service failure should not impact booking operations.
+   * Use microservice separation and database transactions to ensure consistent results.
+
+3. **Performance**:
+
+   * Low latency search responses (<200ms typical) even during peak traffic.
+
+4. **Maintainability**:
+
+   * Modular architecture with clear separation of concerns (search vs booking).
+   * Clean code and Sequelize ORM for easy future modifications.
+
+5. **Security**:
+
+   * JWT authentication for user access.
+   * Prevent unauthorized access to flight data.
+
+6. **Consistency**:
+
+   * Ensure accurate flight availability across multiple requests.
+
+7. **Extensibility**:
+
+   * Can be extended to add caching, filters, or new endpoints without major refactoring.
 
 ---
 
@@ -112,14 +175,6 @@ Server should now be running on `http://localhost:PORT`
 
 ---
 
-## 📈 Why Microservice Separation?
-
-* **Scalability**: Flight search traffic is typically higher than booking traffic.
-* **Reliability**: Failure in one service (e.g., search) does not crash booking operations.
-* **Maintainability**: Independent services are easier to manage, update, and deploy.
-
----
-
 ## 📂 Future Improvements
 
 * Integrate **caching** for frequent search queries to reduce DB load.
@@ -135,3 +190,4 @@ Server should now be running on `http://localhost:PORT`
 * MySQL: [https://www.mysql.com/](https://www.mysql.com/)
 * Sequelize: [https://sequelize.org/](https://sequelize.org/)
 * JWT: [https://jwt.io/](https://jwt.io/)
+
